@@ -1,7 +1,4 @@
-// console.log(global.__dirname);
-// console.log(__filename);
+// console.log("src index module");
+// console.log(module);
 
-// const buffer = Buffer.from("abcdefg", "utf-8");
-// console.log(buffer);
-
-console.log("当前命令行", process.cwd());
+console.log(require);
