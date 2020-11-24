@@ -1,44 +1,52 @@
 const fs = require("fs");
 const path = require("path");
-const filename = path.resolve(__dirname, "./abc.txt");
-const rs = fs.createReadStream(filename, {
-    encoding: "utf-8",
-    highWaterMark: 1,
-    autoClose: true//读完后会自动关闭
-});
 
-rs.on("open", ()=> {
-    console.log("文件被打开了");
-});
-
-rs.on("error", () => {
-    console.log("出错了!");
-});
-
-rs.on("close", () => {
-    console.log("文件关闭时触发");
-});
+async function method1 () {
+    const from = path.resolve(__dirname, "./temp/abc.txt");
+    const to = path.resolve(__dirname, "./temp/abc2.txt");
+    console.time("方式1");
+    const content = await fs.promises.readFile(from);
+    await fs.promises.writeFile(to, content);
+    console.timeEnd("方式1");
+    console.log("复制完成");
+}
+method1();
 
 
 
-rs.on("data", (chunk) => {
-    console.log("读到了一部分数据:", chunk);
-    rs.pause();//暂停
-});
+方式2
+async function method2 () {
+    const from = path.resolve(__dirname, "./temp/abc.txt");
+    const to = path.resolve(__dirname, "./temp/abc2.txt");
+    console.time("方式2");
+   
+    const rs = fs.createReadStream(from);
+    const ws = fs.createWriteStream(to);
+    // rs.on("data", chunk => {
+    //     //读到一部分数据
+    //     const flag = ws.write(chunk);
+    //     if (!flag) {
+    //         //表示下一次写入，会造成背压
+    //         rs.pause();
+    //     }
+    // });
+    // ws.on("drain", () => {
+    //     //可以继续写了
+    //     rs.resume();
+    // })
+    // rs.on("close", () => {
+    //     //写完了
+    //     ws.end();//完毕写入流
+    //     console.timeEnd("方式2");
+    //     console.log("复制完成");
+    // })
 
-rs.on("pause", () => {
-    console.log("暂停了");
-    setTimeout(() => {
-        rs.resume();
-    },1000);
-});
-
-rs.on("resume", () => {
-    console.log("恢复了");
-});
 
 
 
-rs.on("end", () => {
-    console.log("全部数据读取完毕");
-});
+    rs.pipe(ws);
+    rs.on("close", () => {
+        console.timeEnd("方式2");
+    });
+}
+method2();
