@@ -1,0 +1,1 @@
+UPDATE student SET `name`="邓旭明" WHERE id=12; 
