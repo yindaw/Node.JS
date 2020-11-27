@@ -20,6 +20,7 @@
     "@types/node": "^14.14.9"
   },
   "dependencies": {
-    "mysql2": "^2.2.5"
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
   }
 }
