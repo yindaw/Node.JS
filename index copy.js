@@ -1,40 +1,14 @@
 // get the client
-const mysql = require('mysql2/promise');
-    const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: "123123",
-    database: 'companydb',
-    multipleStatements: true,
-  });
-
-async function test (id) {
-  //create the connection to database
-  const sql = `SELECT * FROM employee WHERE \`name\` LIKE CONCAT('%', ?, '%');`;
-  const [results] =  await pool.execute(sql, [id]);
-  console.log(results);
-}
-test("袁");
+const mysql = require('mysql2');
  
+// create the connection to database
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: "123123",
+  database: 'companydb'
+});
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // simple query
 // connection.query("SELECT * FROM `company`;", function (err, results) {
 //     //err错误
@@ -66,9 +40,9 @@ test("袁");
 //   }
 // );
 
-// connection.query(
-//     "DELETE FROM company WHERE id=4",
-//     (err, result) => {
-//         console.log(result);
-//     }
-// );
+connection.query(
+    "DELETE FROM company WHERE id=4",
+    (err, result) => {
+        console.log(result);
+    }
+);
