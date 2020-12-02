@@ -1,2 +1,7 @@
 require("./models/relation");
-// require("./mock/mockStudent");
+// require("./spider/fetchBooks");
+
+const stuServ = require("./services/studentService");
+stuServ.getStudents(1, 10, false, "秀").then((r) => {
+    console.dir(r);
+});

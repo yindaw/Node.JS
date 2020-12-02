@@ -5,7 +5,7 @@ const Book = sequelize.define("Book", {
         type: DataTypes.STRING,
         allowNull: false
     },
-    imgUrl: {
+    imgurl: {
         type: DataTypes.STRING
     },
     publishDate: {
