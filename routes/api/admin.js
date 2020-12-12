@@ -11,12 +11,7 @@ router.post("/login", asyncHandler(async (req, res) => {
        let value = result.id;
        value = cryptor.encrypt(value.toString());
         //登录成功
-        res.cookie("token", value, {
-            path: "/",
-            domian: "localhost", 
-            maxAge: 7 * 24 * 3600 * 1000, //毫秒数
-        });
-        res.header("authorization", value);
+        req.session.loginUser = result;
    }
    return result;
 }));

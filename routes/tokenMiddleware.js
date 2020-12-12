@@ -15,20 +15,12 @@ module.exports = (req, res, next) => {
         next();
         return;
     }
-    let token = req.cookies.token;
-    if (!token) { 
-        //从header的authorization中获取
-        token = req.headers.authorization;
+    if (req.session.loginUser) {
+        //说明已经登录过了
+        next();
+    } else {
+        handleNonToken(req, res, next)
     }
-    if (!token) {
-        //没有认证
-        handleNonToken(req, res, next);
-        return;
-    }
-    const userId = cryptor.decrypt(token);
-    console.log(userId);
-    req.userId = userId;
-    next();
 };
 //处理没有认证的情况
 function handleNonToken (req, res, next) {
