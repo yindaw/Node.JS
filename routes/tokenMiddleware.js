@@ -4,7 +4,6 @@ const cryptor = require("../util/crypt");
 const needTokenApi = [
     { method: "POST", path: "/api/student" },
     { method: "PUT", path: "/api/0student/:id" },
-    { method: "GET", path: "/api/student" }
 ];
 //用于解析token
 module.exports = (req, res, next) => {
