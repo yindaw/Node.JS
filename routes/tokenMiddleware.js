@@ -1,9 +1,10 @@
 const { getErr } = require("./getSendResult");
 const { pathToRegexp } = require("path-to-regexp");
-const cryptor = require("../util/crypt");
+const jwt = require("./jwt");
 const needTokenApi = [
     { method: "POST", path: "/api/student" },
-    { method: "PUT", path: "/api/0student/:id" },
+    { method: "PUT", path: "/api/student/:id" },
+    { method: "GET", path: "/api/admin/whoami" },
 ];
 //用于解析token
 module.exports = (req, res, next) => {
@@ -15,11 +16,14 @@ module.exports = (req, res, next) => {
         next();
         return;
     }
-    if (req.session.loginUser) {
-        //说明已经登录过了
+    const result = jwt.verify(req);
+    if (result) {
+        //认证通过
+        req.userId = result.id;
         next();
     } else {
-        handleNonToken(req, res, next)
+        //认证失败
+        handleNonToken(req, res, next);
     }
 };
 //处理没有认证的情况
