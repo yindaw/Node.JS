@@ -47,6 +47,10 @@ app.use("/api/student", require("./api/student"));
 app.use("/api/admin", require("./api/admin"));
 app.use("/api/upload", require("./api/upload"));
 
+
+//处理对下载资源的请求
+app.use("/res", require("./api/download"));
+
  
 //错误处理的中间件
 app.use(require("./errorMiddleware"));
