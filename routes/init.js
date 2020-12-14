@@ -23,6 +23,10 @@ app.use(cors({
     credentials: true
 }));
 
+
+//使用代理
+app.use(require("./proxyMid"));
+
 //加入cookie-parser中间件
 //加入之后，会在req对象中注入cookies属性，用于获取所有请求传递过来的cookie
 //加入之后，会在res对象中注入cookie方法，用于设置cookie
