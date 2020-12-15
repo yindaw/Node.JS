@@ -4,33 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
-    <h1>被用户信任的站点</h1>
-    <p>
-      <input type="text" id="loginId" />
-    </p>
-    <p>
-      <input type="password" id="loginPwd" />
-    </p>
-    <p>
-      <button id="login">登录</button>
-    </p>
-
+    <a href="/articles">文章列表</a>
+    <h1>发布文章</h1>
+    <textarea id="txtArticle" cols="30" rows="10"></textarea>
+    <button>发布</button>
     <script>
-      function $(selector) {
-        return document.querySelector(selector);
-      }
-      $("#login").onclick = function () {
-        fetch("/api/admin/login", {
+      const txt = document.getElementById("txtArticle");
+      document.querySelector("button").onclick = function () {
+        fetch("/api/article/add", {
           method: "POST",
           headers: {
             "content-type": "application/json",
           },
           body: JSON.stringify({
-            loginId: $("#loginId").value,
-            loginPwd: $("#loginPwd").value,
+            content: txt.value,
           }),
         })
           .then((resp) => resp.json())
