@@ -2,7 +2,3 @@ node_modules/
 temp/
 ~*.ppt*
 logs/
-.DS_Store
-public/upload
-public/origin
-resources
