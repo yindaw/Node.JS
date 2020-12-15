@@ -1,8 +1,8 @@
-node_modules
+node_modules/
 temp/
 ~*.ppt*
-logs/*
+logs/
 .DS_Store
-public/uplpad
+public/upload
 resources
 public/origin

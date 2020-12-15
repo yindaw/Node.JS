@@ -1,7 +1,6 @@
 // 抓取豆瓣读书中的数据信息
 const axios = require("axios").default;
 const cheerio = require("cheerio");
-const { link } = require("fs");
 const Book = require("../models/Book");
 /**
  * 获取豆瓣读书网页的源代码
@@ -26,7 +25,6 @@ async function getBookLinks() {
     .get();
   return links;
 }
-
 
 /**
  * 根据书籍详情页的地址，得到该书籍的详细信息
@@ -64,7 +62,6 @@ async function fetchAll() {
   });
   return Promise.all(proms);
 }
-
 
 /**
  * 得到书籍信息，然后保存到数据库

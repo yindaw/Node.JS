@@ -1,7 +1,7 @@
 {
   "name": "test",
   "version": "1.0.0",
-  "description": "",
+  "description": "每一节课都是一个分支，分支名为课程名称编号",
   "main": "index.js",
   "scripts": {
     "start": "nodemon -x npm run server",
@@ -9,39 +9,40 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yindaw/Node.JS.git"
+    "url": "git+https://github.com/DuYi-Edu/DuYi-Node.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/yindaw/Node.JS/issues"
+    "url": "https://github.com/DuYi-Edu/DuYi-Node/issues"
   },
-  "homepage": "https://github.com/yindaw/Node.JS#readme",
+  "homepage": "https://github.com/DuYi-Edu/DuYi-Node#readme",
   "devDependencies": {
-    "@types/node": "^14.14.9",
-    "nodemon": "^2.0.6"
+    "@types/node": "^13.9.3",
+    "nodemon": "^2.0.3"
   },
   "dependencies": {
-    "axios": "^0.21.0",
+    "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
     "connect-history-api-fallback": "^1.6.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
-    "ejs": "^3.1.5",
+    "ejs": "^3.1.2",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
-    "http-proxy-middleware": "^1.0.6",
-    "jimp": "^0.16.1",
+    "http-proxy-middleware": "^1.0.3",
+    "jimp": "^0.10.3",
     "jsonwebtoken": "^8.5.1",
-    "log4js": "^6.3.0",
-    "md5": "^2.3.0",
+    "log4js": "^6.2.0",
+    "md5": "^2.2.1",
     "mockjs": "^1.1.0",
-    "moment": "^2.29.1",
+    "moment": "^2.24.0",
     "multer": "^1.4.2",
-    "mysql2": "^2.2.5",
-    "path-to-regexp": "^6.2.0",
+    "mysql2": "^2.1.0",
+    "path-to-regexp": "^6.1.0",
     "qrcode": "^1.4.4",
-    "sequelize": "^6.3.5",
+    "sequelize": "^5.21.5",
+    "svg-captcha": "^1.4.0",
     "validate.js": "^0.13.1"
   }
 }

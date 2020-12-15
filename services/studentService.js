@@ -5,56 +5,56 @@ const validate = require("validate.js");
 const moment = require("moment");
 const { pick } = require("../util/propertyHelper");
 exports.addStudent = async function (stuObj) {
-    stuObj = pick(stuObj, "name", "birthday", "sex", "mobile", "ClassId");
-    console.log(stuObj);
-    validate.validators.classExits = async function (value) {
-        const c = await Class.findByPk(value);
-        if (c) {
-            return;
-        }
-        return "is not exist";
+  stuObj = pick(stuObj, "name", "birthday", "sex", "mobile", "ClassId");
+  validate.validators.classExits = async function (value) {
+    const c = await Class.findByPk(value);
+    if (c) {
+      return;
     }
+    return "is not exist";
+  };
+
   const rule = {
-      //验证规则
-      name: {
-          presence: {
-              allowEmpty: false
-          },
-          type: "string",
-          length: {
-              minimum: 1,
-              maximum: 10
-          }
+    //验证规则
+    name: {
+      presence: {
+        allowEmpty: false,
       },
-      birthday: {
-          presence: {
-              allowEmpty: false
-          },
-          datetime: {
-              dateOnly: true,
-              earliest: +moment.utc().subtract(100, "y"),
-              latest: +moment.utc().subtract(5, "y")
-          }
+      type: "string",
+      length: {
+        minimum: 1,
+        maximum: 10,
       },
-      sex: {
-          presence: true,
-          type: "boolean"  
+    },
+    birthday: {
+      presence: {
+        allowEmpty: false,
       },
-      mobile: {
-          presence: {
-              allowEmpty: false
-          },
-          format: /1\d{10}/,
+      datetime: {
+        dateOnly: true,
+        earliest: +moment.utc().subtract(100, "y"),
+        latest: +moment.utc().subtract(5, "y"),
       },
-      ClassId: {
-        presence: true,
-        numericality: {
-            onlyInteger: true,
-            strict: false
-        },
-        classExits: true
-      }
-  }
+    },
+    sex: {
+      presence: true,
+      type: "boolean",
+    },
+    mobile: {
+      presence: {
+        allowEmpty: false,
+      },
+      format: /1\d{10}/,
+    },
+    ClassId: {
+      presence: true,
+      numericality: {
+        onlyInteger: true,
+        strict: false,
+      },
+      classExits: true,
+    },
+  };
   await validate.async(stuObj, rule);
   const ins = await Student.create(stuObj);
   return ins.toJSON();
@@ -75,16 +75,6 @@ exports.updateStudent = async function (id, obj) {
     },
   });
 };
-
-
-
-
-
-
-
-
-
-
 
 exports.getStudentById = async function (id) {
   const result = await Student.findByPk(id);
@@ -132,4 +122,3 @@ exports.getStudents = async function (
     datas: JSON.parse(JSON.stringify(result.rows)),
   };
 };
-
