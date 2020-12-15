@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const stuServ = require("../../services/studentService");
-router("/", async (req, res) => {
+router.get("/", async (req, res) => {
     const page = req.query.page || 1;
     const limit = req.query.limit || 10;
     const sex = req.query.sex || -1;
